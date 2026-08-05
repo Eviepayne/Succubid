@@ -105,6 +105,23 @@ by default the makefile assumes these are either installed system-wide, or in th
 make BUILD=release
 ```
 
+## OS Specific
+
+### Arch
+```bash
+makepkg -si
+```
+
+### MacOS
+```bash
+brew install gcc make cpp-httplib nlohmann-json mpv && make
+```
+
+### FreeBSD
+```bash
+pkg install curl mpv vim nlohmann-json cpp-httplib gcc gmake && gmake
+```
+
 # Disclaimer
 
 Succubid is not affiliated with, endorsed by, or sponsored by Ohdoki AS or The Handy.

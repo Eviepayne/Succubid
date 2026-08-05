@@ -119,7 +119,7 @@ brew install gcc make cpp-httplib nlohmann-json mpv && make
 
 ### FreeBSD
 ```bash
-pkg install curl mpv vim nlohmann-json cpp-httplib gcc gmake && gmake
+pkg install curl mpv xxd nlohmann-json cpp-httplib gcc gmake && gmake
 ```
 
 # Disclaimer

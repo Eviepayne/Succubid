@@ -122,6 +122,11 @@ brew install gcc make cpp-httplib nlohmann-json mpv && make
 pkg install curl mpv xxd nlohmann-json cpp-httplib gcc gmake && gmake
 ```
 
+### Linux/Macos w/ nix
+```bash
+nix profile install github:UnknownPleasuresDev/succubid
+```
+
 # Disclaimer
 
 Succubid is not affiliated with, endorsed by, or sponsored by Ohdoki AS or The Handy.

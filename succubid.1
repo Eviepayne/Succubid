@@ -1,0 +1,184 @@
+.TH SUCCUBID 1 "August 2026" "succubid"
+
+.SH NAME
+succubid \- synchronize MPV with The Handy
+
+.SH SYNOPSIS
+.B succubid
+.BI \-k " CONNECTION_KEY"
+.RI [ OPTIONS ]
+
+.SH DESCRIPTION
+.B succubid
+Synchronizes MPV video playback with The Handy funscript playback.
+
+Configuration may be provided through command-line options or environment
+variables. Command-line options take precedence.
+
+For safety, succubid refuses to run as root.
+
+.SH OPTIONS
+.TP
+.BR \-k ", " \-\-key " " CONNECTION_KEY
+Handy connection key.
+Required.
+
+.TP
+.BR \-f ", " \-\-firmware " " FW3 | FW4
+Handy firmware version.
+Default:
+.BR FW3 .
+
+.TP
+.BR \-a ", " \-\-auth " " AUTH_KEY
+Handy V3 API authentication key.
+Required when using
+.BR FW4 .
+
+Ignored on
+.BR FW3 .
+
+.TP
+.BR \-s ", " \-\-socket " " PATH
+Path to the MPV IPC socket.
+
+Default:
+.BR /tmp/mpv.sock .
+
+.TP
+.BR \-u ", " \-\-upload " " URL
+Script upload server.
+
+Default:
+.br
+https://www.handyfeeling.com/api/hosting/v2/upload
+
+.TP
+.BR \-l ", " \-\-local
+Serve scripts locally instead of uploading them.
+
+This option is supported only with FW3.
+
+.TP
+.BR \-g ", " \-\-gui
+Prompt for a script inside MPV when multiple matching funscripts are found.
+
+.TP
+.BR \-h ", " \-\-help
+Display a help message and exit.
+
+.SH ENVIRONMENT
+Each option may also be configured through an environment variable.
+
+.TP
+.B SUCCUBID_HANDY_CONNECTION_KEY
+Equivalent to
+.BR \-\-key .
+
+.TP
+.B SUCCUBID_HANDY_CONNECTION_AUTH
+Equivalent to
+.BR \-\-auth .
+
+.TP
+.B SUCCUBID_HANDY_API_VERSION
+Equivalent to
+.BR \-\-firmware .
+
+.TP
+.B SUCCUBID_MPV_SOCKET_PATH
+Equivalent to
+.BR \-\-socket .
+
+.TP
+.B SUCCUBID_HANDY_UPLOAD_SERVER
+Equivalent to
+.BR \-\-upload .
+
+.TP
+.B SUCCUBID_SERVE_LOCAL
+Equivalent to
+.BR \-\-local .
+
+Accepted values (case-insensitive):
+.BR true ,
+.BR yes ,
+.BR on ,
+.BR 1 .
+
+Any other value is treated as false.
+
+.TP
+.B SUCCUBID_USE_GUI
+Equivalent to
+.BR \-\-gui .
+
+Accepted values (case-insensitive):
+.BR true ,
+.BR yes ,
+.BR on ,
+.BR 1 .
+
+Any other value is treated as false.
+
+.SH NOTES
+FW4 requires an authentication key.
+
+Local script serving is supported on FW3 only.
+
+.SH EXAMPLES
+Start with the minimum required configuration:
+
+.PP
+.nf
+succubid -k CONNECTION_KEY
+.fi
+
+Use a FW4 device:
+
+.PP
+.nf
+succubid -k CONNECTION_KEY -f FW4 -a AUTH_KEY
+.fi
+
+Serve scripts locally:
+
+.PP
+.nf
+succubid -k CONNECTION_KEY -l
+.fi
+
+Enable the script selector:
+
+.PP
+.nf
+succubid -k CONNECTION_KEY -g
+.fi
+
+Use a custom MPV socket:
+
+.PP
+.nf
+succubid -k CONNECTION_KEY -s /run/user/1000/mpv.sock
+.fi
+
+Configure with environment variables:
+
+.PP
+.nf
+export SUCCUBID_HANDY_CONNECTION_KEY=CONNECTION_KEY
+export SUCCUBID_USE_GUI=true
+succubid
+.fi
+
+.SH EXIT STATUS
+.TP
+.B 0
+Success.
+
+.TP
+.B 1
+Failure.
+
+.SH SEE ALSO
+.BR mpv (1)

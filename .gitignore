@@ -1,0 +1,6 @@
+.vscode
+.kdev4
+Succubid.kdev4
+src/**.o
+src/succubid_selector.hpp
+succubid

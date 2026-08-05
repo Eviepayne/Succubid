@@ -122,6 +122,11 @@ brew install gcc make cpp-httplib nlohmann-json mpv && make
 pkg install curl mpv xxd nlohmann-json cpp-httplib gcc gmake && gmake
 ```
 
+### Fedora
+```bash
+dnf install curl mpv xxd libcurl-devel json-devel cpp-httplib-devel gcc gcc-c++ make && make
+```
+
 ### Linux/Macos w/ nix
 ```bash
 nix profile install github:UnknownPleasuresDev/succubid
